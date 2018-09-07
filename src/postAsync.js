@@ -11,11 +11,11 @@ module.exports = (url, data) => new Promise((resolve, reject) => {
   });
 
   const req = request(options, (res) => {
-    const data = [];
-    res.on('data', d => data.push(d));
+    const responseData = [];
+    res.on('data', (d) => responseData.push(d));
     res.on('end', () => (res.statusCode < 400
-      ? resolve(data.join(''))
-      : reject(new Error(data.join('')))));
+      ? resolve(responseData.join(''))
+      : reject(new Error(responseData.join('')))));
   });
   req.on('error', reject);
   req.write(data);
