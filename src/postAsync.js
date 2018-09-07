@@ -12,7 +12,7 @@ module.exports = (url, data) => new Promise((resolve, reject) => {
 
   const req = request(options, (res) => {
     const responseData = [];
-    res.on('data', d => responseData.push(d));
+    res.on('data', (d) => responseData.push(d));
     res.on('end', () => (res.statusCode < 400
       ? resolve(responseData.join(''))
       : reject(new Error(responseData.join('')))));
