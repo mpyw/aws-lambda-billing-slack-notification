@@ -1,13 +1,12 @@
-'use strict';
-
 const getAsync = require('./getAsync');
+
 const request = getAsync('https://www.gaitameonline.com/rateaj/getrate');
-let open = null;
+const state = { open: null };
 
 module.exports = async (usd) => {
-  if (!open) {
+  if (!state.open) {
     const { quotes } = JSON.parse(await request);
-    ({ open } = quotes.find(({ currencyPairCode }) => currencyPairCode === 'USDJPY'));
+    state.open = (quotes.find(({ currencyPairCode }) => currencyPairCode === 'USDJPY') || {}).open;
   }
-  return Number(usd) * open;
+  return Number(usd) * state.open;
 };
