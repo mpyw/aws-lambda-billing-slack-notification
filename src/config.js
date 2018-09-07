@@ -1,9 +1,9 @@
 const channel = '#general';
-const webhookUrl  = 'https://hooks.slack.com/services/XXXXXXXXXXXXXXXXXX';
+const webhookUrl = 'https://hooks.slack.com/services/XXXXXXXXXXXXXXXXXX';
 
 const emoji = {
-  'Default': ':question:',
-  'Total': ':money_with_wings:',
+  Default: ':question:',
+  Total: ':money_with_wings:',
   'AWS CloudTrail': ':aws-cloudwatch:',
   'AWS Direct Connect': ':handshake:',
   'AWS Key Management Service': ':key:',
@@ -20,12 +20,12 @@ const emoji = {
   'Amazon Simple Email Service': ':email:',
   'Amazon Simple Notification Service': ':iphone:',
   'Amazon Simple Storage Service': ':card_file_box:',
-  'AmazonCloudWatch': ':aws-cloudwatch:',
-  'Tax': ':moneybag:',
+  AmazonCloudWatch: ':aws-cloudwatch:',
+  Tax: ':moneybag:',
 };
 
 const aliases = {
-  'Total': '合計',
+  Total: '合計',
   'AWS CloudTrail': 'CloudTrail',
   'AWS Direct Connect': 'DirectConnect',
   'AWS Key Management Service': 'KMS',
@@ -42,8 +42,10 @@ const aliases = {
   'Amazon Simple Email Service': 'SES',
   'Amazon Simple Notification Service': 'SNS',
   'Amazon Simple Storage Service': 'S3',
-  'AmazonCloudWatch': 'CloudWatch',
-  'Tax': '税金',
+  AmazonCloudWatch: 'CloudWatch',
+  Tax: '税金',
 };
 
-return { channel, webhookUrl, emoji, aliases };
+module.exports = {
+  channel, webhookUrl, emoji, aliases,
+};

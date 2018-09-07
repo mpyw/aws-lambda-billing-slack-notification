@@ -1,5 +1,3 @@
-'use strict';
-
 const { CostExplorer } = require('aws-sdk');
 const { promisify } = require('util');
 const usd2jpy = require('./usd2jpy');
@@ -16,7 +14,6 @@ const Start = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0, 0).format();
 const End = new Date(now.getFullYear(), now.getMonth() + 1, 0, 0, 0, 0).format();
 
 module.exports = async (total = false) => {
-
   const params = {
     TimePeriod: { Start, End },
     GroupBy: [{ Key: 'SERVICE', Type: 'DIMENSION' }],
@@ -33,8 +30,8 @@ module.exports = async (total = false) => {
   return total
     ? { Total: await usd2jpy(Total.BlendedCost.Amount) }
     : Object.assign({}, ...await Promise.all(
-        Groups.map(async ({ Keys: [Key], Metrics: { BlendedCost: { Amount } } }) => ({
-          [Key]: await usd2jpy(Amount),
-        })),
-      ));
+      Groups.map(async ({ Keys: [Key], Metrics: { BlendedCost: { Amount } } }) => ({
+        [Key]: await usd2jpy(Amount),
+      })),
+    ));
 };

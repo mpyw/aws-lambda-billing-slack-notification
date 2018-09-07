@@ -1,0 +1,28 @@
+{
+  "name": "aws-lambda-billing-slack-notification",
+  "version": "1.0.0",
+  "description": "Node.js 8.0 以降向けのAWS当月利用料金Slack通知スクリプト",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyabisun/aws-lambda-billing-slack-notification.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miyabisun/aws-lambda-billing-slack-notification/issues"
+  },
+  "homepage": "https://github.com/miyabisun/aws-lambda-billing-slack-notification#readme",
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.310.0"
+  }
+}
