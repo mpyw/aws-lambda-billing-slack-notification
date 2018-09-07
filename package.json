@@ -4,6 +4,7 @@
   "description": "Node.js 8.0 以降向けのAWS当月利用料金Slack通知スクリプト",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
