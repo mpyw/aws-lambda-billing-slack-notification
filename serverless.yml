@@ -1,0 +1,27 @@
+service: aws-lambda-billing-slack-notification
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'prd'}
+  profile: ${env:AWS_PROFILE, 'default'}
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+  environment:
+    SLACK_WEBHOOK_URL: ${env:SLACK_WEBHOOK_URL}
+    ACCOUNT_NAME: ${env:ACCOUNT_NAME, ''}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - ce:GetCostAndUsage
+          Resource: '*'
+
+functions:
+  billing-notifier:
+    handler: dist/functions/billing-notifier.handler
+    name: billing-notifier
+    description: 'Accumulate monthly charges and post them daily to Slack'
+    events:
+      - schedule: 'cron(0 3 ? * * *)'

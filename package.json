@@ -1,29 +1,37 @@
 {
   "name": "aws-lambda-billing-slack-notification",
-  "version": "1.0.0",
-  "description": "Node.js 8.0 以降向けのAWS当月利用料金Slack通知スクリプト",
-  "main": "index.js",
+  "description": "AWS 当月利用料金 Slack 通知スクリプト",
+  "private": true,
   "scripts": {
-    "lint": "eslint src/",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/miyabisun/aws-lambda-billing-slack-notification.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/miyabisun/aws-lambda-billing-slack-notification/issues"
-  },
-  "homepage": "https://github.com/miyabisun/aws-lambda-billing-slack-notification#readme",
-  "devDependencies": {
-    "eslint": "^5.5.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "check": "tsc --noEmit",
+    "build": "rm -rf ./dist && tsc",
+    "lint:eslint": "eslint ./src",
+    "lint:prettier": "prettier ./src ./serverless.yml --list-different",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "prettier ./src ./serverless.yml --write",
+    "fix": "npm run fix:eslint && npm run fix:prettier",
+    "deploy": "serverless deploy"
   },
   "dependencies": {
-    "aws-sdk": "^2.310.0"
+    "@aws-sdk/client-cost-explorer": "^3.23.0",
+    "@slack/webhook": "^6.0.0",
+    "@types/aws-lambda": "^8.10.81",
+    "@types/node": "^15.14.3",
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.6"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^2.3.2",
+    "serverless": "^2.52.1",
+    "typescript": "^4.3.5"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
