@@ -1,9 +1,8 @@
 import * as config from '../config';
-import { billing } from '../util';
+import { billing } from '../utils';
 import { ScheduledHandler } from 'aws-lambda';
 import dayjs, { Dayjs } from 'dayjs';
 import { IncomingWebhook, IncomingWebhookSendArguments } from '@slack/webhook';
-import { BillingOfServiceResult } from '../util/billing';
 import { slackOptions } from '../config';
 
 const envs = {
@@ -96,14 +95,14 @@ const prepareDates = (): Record<'start' | 'end', Dayjs> => {
 
 const ignoreSmallAmountFilter = ([, { jpy }]: [
   unknown,
-  BillingOfServiceResult
+  billing.BillingOfServiceResult
 ]): boolean => {
   return Math.floor(jpy / 100) * 100 > 0;
 };
 
 const sortComparator = (
-  [x, { jpy: a }]: [string, BillingOfServiceResult],
-  [y, { jpy: b }]: [string, BillingOfServiceResult]
+  [x, { jpy: a }]: [string, billing.BillingOfServiceResult],
+  [y, { jpy: b }]: [string, billing.BillingOfServiceResult]
 ): number => {
   if (x === 'Total') return 0;
   if (y === 'Total') return 1;
