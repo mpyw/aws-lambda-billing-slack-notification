@@ -1,6 +1,6 @@
 import { IncomingWebhookDefaultArguments } from '@slack/webhook';
 
-export const slackOptions: IncomingWebhookDefaultArguments = {
+export const slackOptions: Readonly<IncomingWebhookDefaultArguments> = {
   channel: '#general',
   username: 'AWS Lambda',
   icon_emoji: ':aws:',
@@ -39,7 +39,9 @@ export const serviceAliases = {
   Tax: '税金',
 } as const;
 
-export const serviceEmoji: Record<keyof typeof serviceAliases, string> = {
+export const serviceEmoji: Readonly<
+  Record<keyof typeof serviceAliases, string>
+> = {
   Total: ':money_with_wings:',
   'AWS Backup': ':luggage:',
   'AWS CloudTrail': ':aws-cloudwatch:',
