@@ -26,10 +26,10 @@ export const summary = async (
   return Object.assign({}, ...results);
 };
 
-export const request = async <Total extends boolean>(
+export const request = async (
   start: Dayjs,
   end: Dayjs,
-  total: Total
+  total: boolean
 ): Promise<BillingOfServicesResult> => {
   const params: GetCostAndUsageCommandInput = {
     TimePeriod: {
