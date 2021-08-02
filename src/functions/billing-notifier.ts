@@ -51,7 +51,7 @@ const preparePayload = (
     undefined
   >
 ): IncomingWebhookSendArguments => {
-  const previousMonth = `${now.subtract(1, 'month').month()}月`;
+  const previousMonth = `${now.subtract(1, 'month').format('M')}月`;
   const whose = accountName ? ` ${accountName} の` : '';
 
   const messages = isStarting()
